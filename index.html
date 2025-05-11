@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Don Quixote Translator</title>
+  <style>
+    body { font-family: Georgia, serif; background: #f3f1e7; padding: 2em; }
+    textarea, button { width: 100%; margin-top: 1em; font-size: 1.1em; }
+    .output { background: #fffbe6; padding: 1em; margin-top: 1em; border: 1px solid #ccc; }
+  </style>
+</head>
+<body>
+
+  <h1>🛡️ Don Quixote Translator</h1>
+  <p>Type modern English below to behold its noble transformation!</p>
+
+  <textarea id="input" rows="5" placeholder="Enter thy modern words..."></textarea>
+  <button onclick="translate()">Translate!</button>
+
+  <div class="output" id="output"></div>
+
+  <script>
+    const dictionary = {
+      "you": "thou",
+      "your": "thy",
+      "yours": "thine",
+      "are": "art",
+      "do": "doth",
+      "does": "doth",
+      "have": "hath",
+      "has": "hath",
+      "will": "shalt",
+      "can": "mayst",
+      "is": "be",
+      "i'm": "I am",
+      "i": "I",
+      "me": "me",
+      "we": "we",
+      "they": "they",
+      "the": "ye olde",
+    };
+
+    function translate() {
+      let text = document.getElementById('input').value.toLowerCase();
+      let words = text.split(/\b/);
+      let translated = words.map(word => {
+        return dictionary[word] || word;
+      }).join('');
+
+      translated = "O, noble friend! " + translated.charAt(0).toUpperCase() + translated.slice(1) + 
+                   " Verily, thou speakest with honor and flair!";
+      document.getElementById('output').innerText = translated;
+    }
+  </script>
+
+</body>
+</html>
